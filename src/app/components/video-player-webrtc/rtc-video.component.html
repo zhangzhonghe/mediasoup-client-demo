@@ -1,0 +1,83 @@
+<div class="player">
+
+    <div fxLayout="column nowrap" fxLayoutAlign="center center" class="video">
+        <video
+            #player
+            [hidden]="playbacking"
+            playsinline
+            autoplay
+            [class.fill]="fill"
+            (ended)="onVideoEnded()"
+            (pause)="onVideoPause()"
+            (playing)="onVideoPlaying()"
+        ></video>
+
+        <!-- 用于30秒回放 -->
+        <video
+            #playbackPlayer
+            [hidden]="!playbacking"
+            playsinline
+            [class.fill]="fill"
+            (ended)="onVideoEnded()"
+        ></video>
+        <div
+            class="tip"
+            *ngIf="playbacking"
+            [style.font-size.px]="countdownFontSize"
+        >{{ playbackCountdown ? '回放 ' + playbackCountdown + ' 秒' : '已停止' }}</div>
+        <notadd-video-loading class="loading" *ngIf="loading"></notadd-video-loading>
+    </div>
+    <div *ngIf="controlType === 'bottom'" class="controls">
+        <mat-slider
+            *ngIf="playbacking"
+            color="primary"
+            max="30"
+            min="0"
+            [value]="30 - playbackCountdown"
+            step="1"
+            thumbLabel
+            [displayWith]="formatPlaybackTime"
+            (change)="onChangePlaybackTime($event)"
+        ></mat-slider>
+        <div fxLayout="row nowrap" fxLayoutAlign="space-between center">
+            <div class="button-group">
+                <button mat-icon-button (click)="onTogglePlay()">
+                    <mat-icon *ngIf="!playing">play_arrow</mat-icon>
+                    <mat-icon *ngIf="playing">pause</mat-icon>
+                </button>
+                <button mat-icon-button (click)="onPlayback()">
+                    <mat-icon>replay_30</mat-icon>
+                </button>
+                <notadd-video-volume-control [disabled]="!playing" [volume]="volume" [muted]="true" (volumeChanged)="onVolumeChange($event)" (mutedChanged)="onMuteChange($event)"></notadd-video-volume-control>
+            </div>
+            <!-- <div class="button-group screenshot-x">
+                <div class="screenshot-btn">
+                    <button mat-icon-button (click)="onScreenshotClick()">
+                        <mat-icon>camera_alt</mat-icon>
+                    </button>
+                </div>
+            </div> -->
+            <div class="button-group">
+                <button mat-icon-button (click)="onToggleStream()">
+                    <mat-icon *ngIf="streamId === 0" svgIcon="mdi:record-circle-outline"></mat-icon>
+                    <mat-icon *ngIf="streamId === 1" svgIcon="mdi:radiobox-marked"></mat-icon>
+                    <mat-icon *ngIf="streamId === 2" svgIcon="mdi:circle-slice-8"></mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon>get_app</mat-icon>
+                </button>
+                <button mat-icon-button (click)="onFullscreen()">
+                    <mat-icon>zoom_out_map</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="controlType === 'middle'" class="controls-middle" fxLayoutAlign="center center">
+        <div class="button-group-middle" [class.always-visible]="!playing" [hidden]="loading">
+            <button mat-icon-button class="button-item" fxLayoutAlign="center center" (click)="onTogglePlay()">
+                <mat-icon fxLayoutAlign="center center">{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

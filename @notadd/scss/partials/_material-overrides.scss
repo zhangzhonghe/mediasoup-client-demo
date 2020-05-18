@@ -1,0 +1,83 @@
+.mat-tab-group {
+    /* no mat label */
+    &[no-header] {
+        .mat-tab-header {
+            display: none !important;
+        }
+    }
+
+    /* body height 100% */
+    &[full-height-body] {
+        .mat-tab-body-wrapper {
+            height: 100%;
+        }
+    }
+
+    /* theme panel tab */
+    &.theme-panel {
+        .mat-tab-label {
+            min-width: 80px;
+            padding: 5px;
+
+            @include media-breakpoint-down('xs') {
+                min-width: 70px;
+            }
+        }
+    }
+}
+
+/* add list item class */
+.mat-list-item {
+    &.item-padding-0 {
+        .mat-list-item-content {
+            padding: 0 !important;
+        }
+    }
+
+    &.item-pl-30 {
+        .mat-list-item-content {
+            padding-left: 30px !important;
+        }
+    }
+}
+
+/*avoid direction-y scrollbar when mat-dialog appearance*/
+.cdk-global-scrollblock {
+    overflow-y: hidden;
+}
+
+/* mat-table no data source placeholder */
+.mat-table {
+    position: relative;
+
+    &.no-data::after {
+        content: attr(data-placeholder);
+        position: absolute;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+        min-height: 300px;
+        padding-bottom: 20px;
+        font-size: 18px;
+        color: #c2c5c8;
+        background: url("/assets/images/mat-table-placeholder.svg") no-repeat center center;
+    }
+}
+
+
+/*　button-toggle-focus-background */
+.mat-button-toggle {
+    &.mat-button-toggle-appearance-standard[focus-background-transparent] {
+        .mat-button-toggle-focus-overlay {
+            background-color: transparent !important;
+        }
+    }
+}
+
+/* */
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #FFF;
+}

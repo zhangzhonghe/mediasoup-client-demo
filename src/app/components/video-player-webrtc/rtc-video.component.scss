@@ -1,0 +1,173 @@
+$controls-background-color: rgba(0, 0, 0, 0.3);
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.stretch-box {
+    border: 1px dashed red;
+}
+
+.player {
+    background-color: black;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .video {
+        display: block;
+        width: inherit;
+        height: inherit;
+        z-index: 0;
+
+        video {
+            width: inherit;
+            height: inherit;
+        }
+    }
+
+    .tip {
+        position: absolute;
+        z-index: 1;
+        left: 10px;
+        font-size: 14px;
+        padding: 2px 5px;
+        color: #FFF;
+        background-color: $controls-background-color;
+    }
+
+    .button-group {
+        white-space: nowrap;
+    }
+
+    .controls {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 40px;
+        width: 100%;
+        color: #FFF;
+        background: $controls-background-color;
+        z-index: 1;
+
+        mat-slider {
+            position: absolute;
+            top: -60%;
+            width: 100%;
+
+            ::ng-deep {
+                .mat-slider-wrapper {
+                    background-color: #ddd;
+                }
+            }
+
+            &.cdk-focused {
+                ::ng-deep {
+                    .mat-slider-thumb-label {
+                        border-radius: 4px;
+                        transform: none;
+                        width: 50px;
+                        height: 30px;
+                        background-color: rgba(0, 0, 0, 0.38);
+
+                        .mat-slider-thumb-label-text {
+                            transform: none;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .volume {
+            position: relative;
+
+            .slider {
+                display: block;
+                position: absolute;
+                bottom: 80%;
+                left: -3px;
+            }
+        }
+
+        .screenshot-x {
+            margin-top: -74px;
+            width: 68px;
+            height: 34px;
+            overflow: hidden;
+            flex-shrink: 0;
+
+            .screenshot-btn {
+                width: 68px;
+                height: 68px;
+                border-radius: 50%;
+                text-align: center;
+                padding-top: 4px;
+                background-color: $controls-background-color;
+            }
+        }
+    }
+
+    .controls-middle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &:hover .button-group-middle {
+            visibility: visible;
+        }
+
+        .always-visible.always-visible {
+            visibility: visible;
+        }
+
+        .button-group-middle {
+            visibility: hidden;
+
+            .button-item {
+                width: 43.5px;
+                height: 43.5px;
+                border-radius: 50%;
+                background-color: rgba($color: #fff, $alpha: .4);
+                mat-icon {
+                    color: #fff;
+                    font-size: 2em;
+                }
+            }
+        }
+    }
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+.show-mouse {
+    cursor: default;
+}
+
+.hide-mouse {
+    cursor: none;
+}
+
+.snapshot {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.fill {
+    object-fit: fill;
+}

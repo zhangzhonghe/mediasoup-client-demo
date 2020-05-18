@@ -1,0 +1,27 @@
+.volume-control {
+    display: inline;
+
+    .volume-slider {
+        visibility: hidden;
+        position: absolute;
+        opacity: 0;
+        height: 40px;
+        min-width: 0;
+        width: 0;
+        transition: visibility 0s 0.2s, opacity 0.2s linear, width 0.2s linear;
+    }
+
+    &:hover {
+        .volume-slider {
+            visibility: visible;
+            opacity: 1;
+            min-width: 90px;
+            width: 90px;
+            transition: opacity 0.2s linear, width 0.2s linear, min-width 0.2s linear;
+        }
+    }
+}
+
+.volume-slider {
+    margin-left: -15px;
+}

@@ -1,0 +1,72 @@
+// Notadd logo
+@import "../icons/notadd-icons";
+
+// weather icons
+@import "../icons/weather-icons";
+
+// Material-icons
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/icon-fonts/material/material-icons.woff2') format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+}
+
+i,
+mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    line-height: 24px;
+
+    @each $breakpoint in map-keys($grid-breakpoints) {
+
+        @include media-breakpoint-up($breakpoint) {
+
+            $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+            @for $size from 2 through 128 {
+
+                &.s#{$infix}-#{$size * 2} {
+                    font-size: #{($size * 2) + 'px'} !important;
+                    width: #{($size * 2) + 'px'} !important;
+                    height: #{($size * 2) + 'px'} !important;
+                    min-width: #{($size * 2) + 'px'} !important;
+                    min-height: #{($size * 2) + 'px'} !important;
+                    line-height: #{($size * 2) + 'px'} !important;
+                }
+            }
+        }
+    }
+}
+
+/* solve the problem where an icon isn't aligned properly when used in a menu item */
+button.mat-menu-item {
+    line-height: 24px !important;
+}
+
+a.mat-menu-item > mat-icon {
+    margin-bottom: 14px;
+}
+
+/* reset mat-icon box-sizing */
+.mat-icon {
+    box-sizing: content-box;
+}

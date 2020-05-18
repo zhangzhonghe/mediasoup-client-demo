@@ -1,0 +1,13 @@
+mutation createWebRtc($input: CreateWebRtcInput!) {
+  createWebRtc(input: $input) {
+    clientId
+    webRtcInfo
+    streamInfo
+  }
+}
+
+mutation connectedWebRtc($input: ConnectedWebRtcInput!) {
+  connectedWebRtc(input: $input) {
+    status
+  }
+}

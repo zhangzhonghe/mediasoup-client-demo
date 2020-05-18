@@ -1,0 +1,139 @@
+@import '~@angular/material/theming';
+
+// Custom color maps
+$mat-white: (
+    500: white,
+    contrast: (
+        500: $black-87-opacity
+    )
+);
+
+$mat-black: (
+    500: black,
+    contrast: (
+        500: white,
+    )
+);
+
+$mat-notadddark: (
+    50: #ECECEE,
+    100: #C5C6CB,
+    200: #9EA1A9,
+    300: #7D818C,
+    400: #5C616F,
+    500: #3C4252,
+    600: #353A48,
+    700: #2D323E,
+    800: #262933,
+    900: #1E2129,
+    A100: #C5C6CB,
+    A200: #9EA1A9,
+    A400: #5C616F,
+    A700: #2D323E,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: white,
+        400: white,
+        500: $white-87-opacity,
+        600: $white-87-opacity,
+        700: $white-87-opacity,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: $white-87-opacity,
+        A400: $white-87-opacity,
+        A700: $white-87-opacity,
+    )
+);
+
+$mat-wushier-accent: (
+    50 : #fef3e9,
+    100 : #fee0c9,
+    200 : #fdcba5,
+    300 : #fcb681,
+    400 : #fba766,
+    500 : #fa974b,
+    600 : #f98f44,
+    700 : #f9843b,
+    800 : #f87a33,
+    900 : #f66923,
+    A100 : #ffffff,
+    A200 : #fffdfc,
+    A400 : #ffdac9,
+    A700 : #ffc8b0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-wushier-warn: (
+    50 : #feeded,
+    100 : #fdd3d3,
+    200 : #fcb5b5,
+    300 : #fa9797,
+    400 : #f98181,
+    500 : #f86b6b,
+    600 : #f76363,
+    700 : #f65858,
+    800 : #f54e4e,
+    900 : #f33c3c,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffd9d9,
+    A700 : #ffbfbf,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-open-cyan: (
+    500: #42bcbc,
+    contrast: (
+        500: $light-primary-text
+    )
+);
+
+// Define the Material palettes
+$primary: mat-palette($mat-open-cyan);
+$accent: mat-palette($mat-wushier-accent);
+$warn: mat-palette($mat-wushier-warn);
+
+// Create the Material theme object
+$theme: mat-light-theme($primary, $accent, $warn);
+
+// Store the background and foreground colors for easier access
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
+
+// Force the input field font sizes to 16px
+$typography: mat-typography-config(
+    $input: mat-typography-level(16px, 1.125, 400)
+)
